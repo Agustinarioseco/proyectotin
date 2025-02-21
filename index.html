@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador Libre</title>
+    <link rel="stylesheet" href="./css/styles.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+</head>
+<body>
+    <div class="navbar">Organizador Libre</div>
+    <div class="sidebar">Menú</div>
+    <div class="workspace" id="workspace">
+        <div class="workspace" id="workspace">
+            <div class="card note-card" id="note" style="top: 100px; left: 100px;">
+                <textarea placeholder="Escribe una nota..." style="width: 90%; height: 70%; background: transparent; border: none; color: white;"></textarea>
+            </div>
+            <div class="card reminder-card" id="reminder" style="top: 300px; left: 150px;">
+                <p>Recordatorio: Reunión a las 3 PM</p>
+            </div>
+            <div class="card calendar-card" id="calendar" style="top: 500px; left: 200px;">
+                <p>Calendario (pronto)</p>
+            </div>
+        </div>
+        
+        <script>
+            interact('.card').draggable({
+                inertia: true,
+                modifiers: [
+                    interact.modifiers.restrictRect({
+                        restriction: "parent",
+                        endOnly: true
+                    })
+                ],
+                listeners: {
+                    move(event) {
+                        let target = event.target;
+                        let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                        let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                        target.style.transform = `translate(${x}px, ${y}px)`;
+                        target.setAttribute('data-x', x);
+                        target.setAttribute('data-y', y);
+                    }
+                }
+            });
+        </script>
+        
+    </div>
+</body>
+</html>

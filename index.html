@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organizador Libre</title>
     <link rel="stylesheet" href="./css/styles.css"> 
+    <!-- FullCalendar CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.min.css" rel="stylesheet">
+<!-- FullCalendar JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
 </head>
 <body>
@@ -43,9 +48,11 @@
         <div class="card reminder-card" id="reminder" style="top: 300px; left: 150px;">
             <p>Recordatorio: Reunión a las 3 PM</p>
         </div>
-        <div class="card calendar-card" id="calendar" style="top: 500px; left: 200px;">
-            <p>Calendario</p>
-        </div>
+       <!-- Card para el calendario -->
+<div class="card calendar-card">
+    <div id="calendar"></div>
+</div>
+
         
     </div>
 
@@ -140,7 +147,30 @@
         actualizarHora();
     
         // Obtener el clima (simulado)
-        document.getElementById('clima').textContent = "🌤️ 22°C";
+        document.getElementById('clima').textContent = "🌤️ 30°C";
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let calendarEl = document.getElementById('calendar');
+    
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth', // Modo mensual
+                editable: true, // Permite mover eventos
+                selectable: true, // Permite seleccionar días
+                dateClick: function(info) {
+                    let title = prompt('Agregar evento:');
+                    if (title) {
+                        calendar.addEvent({
+                            title: title,
+                            start: info.dateStr,
+                            allDay: true
+                        });
+                    }
+                }
+            });
+    
+            calendar.render();
+        });
     </script>
     
 </body>

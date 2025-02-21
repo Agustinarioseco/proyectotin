@@ -129,3 +129,14 @@ body {
     cursor: grab;
     border-radius: 10px;
 }
+.calendar-card {
+    width: 350px;
+    height: 400px;
+    background: #292929;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+

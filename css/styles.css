@@ -62,7 +62,7 @@ body {
     margin-left: 200px;
     width: calc(100% - 200px);
     height: calc(100vh - 50px);
-    background: #1b1b1b;
+    background-image: url(../img/_\ \(15\).jpeg);
     position: relative;
     overflow: hidden;
 }

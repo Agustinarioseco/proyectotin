@@ -8,43 +8,141 @@
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
 </head>
 <body>
-    <div class="navbar">Organizador Libre</div>
-    <div class="sidebar">Menú</div>
+    <!-- Menú lateral -->
+    <div class="sidebar">
+        <ul>
+            <li>Inicio</li>
+            <li>Mis Proyectos
+                <ul>
+                    <li>Proyecto 1</li>
+                    <li>Proyecto 2</li>
+                    <li>Proyecto 3</li>
+                </ul>
+            </li>
+            <li>Mi Book</li>
+            <li>Mis Eventos</li>
+            <li>Foro</li>
+            <li>Premiación</li>
+        </ul>
+    </div>
+
+    <!-- Navbar superior -->
+    <div class="navbar">
+        <span>Bienvenido a tu organizador</span>
+        <div class="info">
+            <span id="hora"></span>
+            <span id="clima">Cargando clima...</span>
+        </div>
+    </div>
+
+    <!-- Área de trabajo -->
     <div class="workspace" id="workspace">
-        <div class="workspace" id="workspace">
-            <div class="card note-card" id="note" style="top: 100px; left: 100px;">
-                <textarea placeholder="Escribe una nota..." style="width: 90%; height: 70%; background: transparent; border: none; color: white;"></textarea>
-            </div>
-            <div class="card reminder-card" id="reminder" style="top: 300px; left: 150px;">
-                <p>Recordatorio: Reunión a las 3 PM</p>
-            </div>
-            <div class="card calendar-card" id="calendar" style="top: 500px; left: 200px;">
-                <p>Calendario (pronto)</p>
-            </div>
+        <div class="card note-card" id="note" style="top: 100px; left: 100px;">
+            <textarea placeholder="Escribe una nota..." style="width: 90%; height: 70%; background: transparent; border: none; color: white;"></textarea>
+        </div>
+        <div class="card reminder-card" id="reminder" style="top: 300px; left: 150px;">
+            <p>Recordatorio: Reunión a las 3 PM</p>
+        </div>
+        <div class="card calendar-card" id="calendar" style="top: 500px; left: 200px;">
+            <p>Calendario</p>
         </div>
         
-        <script>
-            interact('.card').draggable({
-                inertia: true,
-                modifiers: [
-                    interact.modifiers.restrictRect({
-                        restriction: "parent",
-                        endOnly: true
-                    })
-                ],
-                listeners: {
-                    move(event) {
-                        let target = event.target;
-                        let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-                        let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-                        target.style.transform = `translate(${x}px, ${y}px)`;
-                        target.setAttribute('data-x', x);
-                        target.setAttribute('data-y', y);
-                    }
-                }
-            });
-        </script>
-        
     </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Hacer las cards movibles
+        interact('.card').draggable({
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: "parent",
+                    endOnly: true
+                })
+            ],
+            listeners: {
+                move(event) {
+                    let target = event.target;
+                    let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                    let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                    target.style.transform = `translate(${x}px, ${y}px)`;
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                }
+            }
+        });
+
+        // Mostrar la hora actual
+        function actualizarHora() {
+            let ahora = new Date();
+            let hora = ahora.toLocaleTimeString();
+            document.getElementById('hora').textContent = hora;
+        }
+        setInterval(actualizarHora, 1000);
+        actualizarHora();
+
+        // Obtener el clima (simulado)
+        document.getElementById('clima').textContent = "🌤️ 22°C";
+    </script>
+    <script>
+        // Hacer las cards movibles
+        interact('.card').draggable({
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: "parent",
+                    endOnly: true
+                })
+            ],
+            listeners: {
+                move(event) {
+                    let target = event.target;
+                    let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                    let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                    target.style.transform = `translate(${x}px, ${y}px)`;
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                }
+            }
+        });
+    
+        // Hacer las cards redimensionables
+        interact('.card').resizable({
+            edges: { left: true, right: true, bottom: true, top: true }, // Permite cambiar el tamaño desde cualquier lado
+            listeners: {
+                move(event) {
+                    let target = event.target;
+                    let x = parseFloat(target.getAttribute('data-x')) || 0;
+                    let y = parseFloat(target.getAttribute('data-y')) || 0;
+    
+                    // Aplicar el nuevo tamaño
+                    target.style.width = `${event.rect.width}px`;
+                    target.style.height = `${event.rect.height}px`;
+    
+                    // Ajustar la posición si es necesario
+                    x += event.deltaRect.left;
+                    y += event.deltaRect.top;
+                    
+                    target.style.transform = `translate(${x}px, ${y}px)`;
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                }
+            }
+        });
+    
+        // Mostrar la hora actual
+        function actualizarHora() {
+            let ahora = new Date();
+            let hora = ahora.toLocaleTimeString();
+            document.getElementById('hora').textContent = hora;
+        }
+        setInterval(actualizarHora, 1000);
+        actualizarHora();
+    
+        // Obtener el clima (simulado)
+        document.getElementById('clima').textContent = "🌤️ 22°C";
+    </script>
+    
 </body>
 </html>
+

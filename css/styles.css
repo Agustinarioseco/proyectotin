@@ -5,29 +5,58 @@ body {
     color: white;
 }
 
+/* Navbar fijo */
 .navbar {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 200px;
+    width: calc(100% - 200px);
     height: 50px;
     background: #1f1f1f;
     color: white;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 20px;
 }
 
+.navbar .info {
+    display: flex;
+    gap: 20px;
+    padding: 0px 50px;
+}
+
+/* Menú lateral fijo */
 .sidebar {
     position: fixed;
-    top: 50px;
+    top: 0;
     left: 0;
     width: 200px;
-    height: calc(100% - 50px);
+    height: 100vh;
     background: #292929;
     padding: 20px;
 }
 
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    padding: 10px;
+    background: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+    background: #50b848;
+}
+
+/* Espacio interactivo */
 .workspace {
     margin-top: 50px;
     margin-left: 200px;
@@ -38,9 +67,10 @@ body {
     overflow: hidden;
 }
 
+/* Cards */
 .card {
-    width: 150px;
-    height: 100px;
+    width: 200px;
+    height: 150px;
     background: #333;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
@@ -50,4 +80,52 @@ body {
     position: absolute;
     cursor: grab;
     color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.note-card {
+    background: #8e44ad;
+}
+
+.reminder-card {
+    background: #e94e77;
+}
+
+.calendar-card {
+    background: #50b848;
+}
+
+/* Barra de herramientas para agregar imágenes y stickers */
+.toolbar {
+    position: fixed;
+    top: 60px;
+    left: 220px;
+    background: #292929;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+}
+
+.toolbar button {
+    background: #50b848;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.toolbar button:hover {
+    background: #8e44ad;
+}
+
+/* Imágenes y stickers */
+.image, .sticker {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    cursor: grab;
+    border-radius: 10px;
 }

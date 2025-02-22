@@ -49,7 +49,7 @@
             <p>Recordatorio: Reunión a las 3 PM</p>
         </div>
        <!-- Card para el calendario -->
-<div class="card calendar-card">
+<div class="card calendar-card draggable">
     <div id="calendar"></div>
 </div>
 
@@ -137,7 +137,8 @@
             }
         });
     
-        // Mostrar la hora actual
+     //Mostrar la hora actual//
+     
         function actualizarHora() {
             let ahora = new Date();
             let hora = ahora.toLocaleTimeString();
@@ -149,30 +150,35 @@
         // Obtener el clima (simulado)
         document.getElementById('clima').textContent = "🌤️ 30°C";
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let calendarEl = document.getElementById('calendar');
-    
-            let calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', // Modo mensual
-                editable: true, // Permite mover eventos
-                selectable: true, // Permite seleccionar días
-                dateClick: function(info) {
-                    let title = prompt('Agregar evento:');
-                    if (title) {
-                        calendar.addEvent({
-                            title: title,
-                            start: info.dateStr,
-                            allDay: true
-                        });
-                    }
+   <script>
+    //fullcalendar//
+    document.addEventListener('DOMContentLoaded', function () {
+        let calendarEl = document.getElementById('calendar');
+
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            editable: true,
+            selectable: true,
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            dateClick: function(info) {
+                let title = prompt('Agregar evento:');
+                if (title) {
+                    calendar.addEvent({
+                        title: title,
+                        start: info.dateStr,
+                        allDay: true
+                    });
                 }
-            });
-    
-            calendar.render();
+            }
         });
-    </script>
-    
+
+        calendar.render();
+    });
+</script>
 </body>
 </html>
 

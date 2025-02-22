@@ -129,14 +129,57 @@ body {
     cursor: grab;
     border-radius: 10px;
 }
+/* Card contenedora del calendario */
 .calendar-card {
-    width: 350px;
-    height: 400px;
-    background: #292929;
+    width: 500px;
+    height: 500px;
+    background: #2a2670;
     color: white;
     border-radius: 10px;
-    padding: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Lo centra horizontalmente */
+}
+
+/* Estilos para el calendario */
+.fc {
+    background: #2a2670;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Estilo de los días */
+.fc-daygrid-day {
+    border: 1px solid #333;
+}
+
+/* Estilo de los eventos */
+.fc-event {
+    background: #8f918f !important; /* Verde brillante */
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Hover en eventos */
+.fc-event:hover {
+    background: #66d960 !important;
+}
+
+/* Estilo de los botones de navegación */
+.fc-button {
+    background: #b488dc !important; /* Lila brillante */
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.fc-button:hover {
+    background: #b488dc !important;
 }
 
